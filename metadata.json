@@ -1,0 +1,6 @@
+{
+  "name": "Kumar & Sons Tours Sri Lanka",
+  "description": "Official website of Kumar & Sons Tours (KS Tours Sri Lanka) — nearly 40 years of local expertise offering private tours, tailor-made itineraries, wildlife safaris, and English-speaking private drivers.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

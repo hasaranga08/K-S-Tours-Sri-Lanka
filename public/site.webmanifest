@@ -1,0 +1,15 @@
+{
+  "name": "Kumar & Sons Tours Sri Lanka",
+  "short_name": "KS Tours",
+  "icons": [
+    {
+      "src": "/images/favicon.png",
+      "sizes": "24x24",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#b45309"
+}
