@@ -5,6 +5,8 @@ export interface TourDay {
   stayLocation?: string;
   mealsIncluded?: string;
   highlights?: string[];
+  estimatedDrive?: string;
+  distanceKm?: string;
 }
 
 export interface FAQItem {
@@ -35,6 +37,8 @@ export interface TourPackage {
   primaryKeyword: string;
   secondaryKeywords: string[];
   featured?: boolean;
+  seasonalGuidance?: string;
+  routePacingSummary?: string;
 }
 
 export interface Destination {

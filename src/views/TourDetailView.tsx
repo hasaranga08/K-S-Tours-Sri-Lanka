@@ -189,6 +189,30 @@ export const TourDetailView: React.FC<TourDetailViewProps> = ({ tour, onNavigate
         </div>
       </div>
 
+      {/* Destinations Covered on This Route */}
+      {tour.destinations && tour.destinations.length > 0 && (
+        <div className="bg-white border border-neutral-200 rounded-xl p-4 sm:p-5 text-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-2xs">
+          <div className="flex items-center gap-2 text-neutral-700 shrink-0 font-medium">
+            <MapPin className="w-4 h-4 text-amber-700 shrink-0" />
+            <span>Key Destinations:</span>
+          </div>
+          <div className="flex flex-wrap items-center gap-2">
+            {tour.destinations.map((destName, i) => {
+              const matchedDestSlug = destName.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+              return (
+                <button
+                  key={i}
+                  onClick={() => onNavigate(`/destinations/${matchedDestSlug}/`)}
+                  className="px-2.5 py-1 bg-neutral-100 hover:bg-amber-100 hover:text-amber-950 text-neutral-700 rounded-md transition-colors cursor-pointer text-xs"
+                >
+                  {destName}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
       {/* Main Content Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
         
@@ -196,13 +220,43 @@ export const TourDetailView: React.FC<TourDetailViewProps> = ({ tour, onNavigate
         <div className="lg:col-span-2 space-y-10">
           
           {/* Overview */}
-          <section>
-            <h2 className="font-serif text-2xl font-bold text-neutral-900 mb-3">
-              Tour Overview
-            </h2>
-            <p className="text-sm sm:text-base text-neutral-700 leading-relaxed">
-              {tour.overview}
-            </p>
+          <section className="space-y-4">
+            <div>
+              <h2 className="font-serif text-2xl font-bold text-neutral-900 mb-2">
+                Tour Overview
+              </h2>
+              <p className="text-sm sm:text-base text-neutral-700 leading-relaxed">
+                {tour.overview}
+              </p>
+            </div>
+
+            {/* Route Pacing & Seasonal Advice Callout */}
+            {(tour.routePacingSummary || tour.seasonalGuidance) && (
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                {tour.routePacingSummary && (
+                  <div className="bg-neutral-50 border border-neutral-200 rounded-xl p-4 text-xs">
+                    <span className="font-semibold text-neutral-900 block mb-1 flex items-center gap-1.5">
+                      <Car className="w-3.5 h-3.5 text-amber-700" />
+                      Route Pacing &amp; Travel Rhythm
+                    </span>
+                    <p className="text-neutral-600 leading-relaxed">
+                      {tour.routePacingSummary}
+                    </p>
+                  </div>
+                )}
+                {tour.seasonalGuidance && (
+                  <div className="bg-amber-50/60 border border-amber-200/80 rounded-xl p-4 text-xs">
+                    <span className="font-semibold text-amber-950 block mb-1 flex items-center gap-1.5">
+                      <Clock className="w-3.5 h-3.5 text-amber-800" />
+                      Seasonal Weather &amp; Best Months
+                    </span>
+                    <p className="text-neutral-700 leading-relaxed">
+                      {tour.seasonalGuidance}
+                    </p>
+                  </div>
+                )}
+              </div>
+            )}
           </section>
 
           {/* Key Highlights */}
@@ -278,10 +332,21 @@ export const TourDetailView: React.FC<TourDetailViewProps> = ({ tour, onNavigate
                     {isOpen && (
                       <div className="px-5 pb-5 pt-1 border-t border-neutral-100 text-xs sm:text-sm text-neutral-700 leading-relaxed space-y-3">
                         <p>{day.description}</p>
-                        {day.stayLocation && (
-                          <div className="flex items-center gap-2 text-xs text-neutral-500 pt-2 border-t border-dashed border-neutral-200">
-                            <MapPin className="w-3.5 h-3.5 text-amber-700" />
-                            <span>Overnight Stay: <strong className="text-neutral-800">{day.stayLocation}</strong></span>
+                        
+                        {(day.stayLocation || day.estimatedDrive) && (
+                          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-neutral-500 pt-2 border-t border-dashed border-neutral-200">
+                            {day.stayLocation && (
+                              <div className="flex items-center gap-1.5">
+                                <MapPin className="w-3.5 h-3.5 text-amber-700 shrink-0" />
+                                <span>Overnight Stay: <strong className="text-neutral-800">{day.stayLocation}</strong></span>
+                              </div>
+                            )}
+                            {day.estimatedDrive && (
+                              <div className="flex items-center gap-1.5 text-neutral-600">
+                                <Car className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                                <span>Drive: <strong className="text-neutral-800 font-medium">{day.estimatedDrive}</strong></span>
+                              </div>
+                            )}
                           </div>
                         )}
                       </div>
@@ -376,7 +441,7 @@ export const TourDetailView: React.FC<TourDetailViewProps> = ({ tour, onNavigate
               </div>
             </div>
 
-            {/* Operator Credentials */}
+            {/* Operator Credentials & Internal Links */}
             <div className="bg-neutral-50 border border-neutral-200 rounded-xl p-5 text-xs text-neutral-600 space-y-3">
               <h4 className="font-serif font-bold text-sm text-neutral-900">
                 Your Chauffeur Guide Team
@@ -386,6 +451,28 @@ export const TourDetailView: React.FC<TourDetailViewProps> = ({ tour, onNavigate
               </p>
               <div className="pt-2 text-neutral-900 font-medium">
                 Direct Hotline: {COMPANY_INFO.phone}
+              </div>
+              <div className="pt-3 border-t border-neutral-200/80 space-y-2">
+                <span className="font-semibold text-neutral-800 block text-[11px] uppercase tracking-wider">
+                  Need Changes to This Route?
+                </span>
+                <p className="text-neutral-500 text-[11px]">
+                  Want to customize stops or hire a driver with your own hotels?
+                </p>
+                <div className="flex flex-col gap-1.5 pt-1">
+                  <button
+                    onClick={() => onNavigate('/tailor-made-sri-lanka-tours/')}
+                    className="text-left text-xs font-semibold text-amber-800 hover:text-amber-950 underline cursor-pointer"
+                  >
+                    &rarr; Customize this as a tailor-made tour
+                  </button>
+                  <button
+                    onClick={() => onNavigate('/sri-lanka-private-driver/')}
+                    className="text-left text-xs font-semibold text-amber-800 hover:text-amber-950 underline cursor-pointer"
+                  >
+                    &rarr; Hire a private driver only
+                  </button>
+                </div>
               </div>
             </div>
 

@@ -64,20 +64,32 @@ export const PRIVATE_DRIVER_SERVICE = {
   pricingPolicy: "We believe in honest, upfront rates with ZERO hidden surprises. You receive a fixed quote covering everything — driver, vehicle, fuel, tolls, and parking. No forced shopping commission stops, ever.",
   faqs: [
     {
-      question: "Do I have to provide accommodation or food for the driver?",
-      answer: "No. Most hotels and resorts in Sri Lanka provide complimentary driver quarters and meals. If your boutique hotel or Airbnb does not have driver accommodation, our quotation covers the driver's lodging so you never have to worry."
+      question: "What is included in the private driver quotation?",
+      answer: "Every quotation from Kumar & Sons Tours is all-inclusive. It covers your dedicated English-speaking chauffeur guide, the modern air-conditioned vehicle, all fuel for agreed daily travel, expressway tolls, parking fees, comprehensive passenger insurance, and the driver's meals and overnight accommodation. There are no hidden fees or unexpected road expenses."
     },
     {
-      question: "Are your drivers English-speaking?",
-      answer: "Yes, all our drivers speak good English, and Kumar also speaks conversational German. They are knowledgeable about local history, culture, routes, and wildlife."
+      question: "How does driver accommodation and meals work?",
+      answer: "Most tourist hotels and guest houses in Sri Lanka provide complimentary driver quarters and meals. If you choose to stay at a private villa, boutique bungalow, or Airbnb that does not have driver facilities, we arrange and cover the driver's nearby accommodation directly. You never have to book rooms, pay extra fees, or worry about your driver's lodging."
     },
     {
-      question: "Can we change our daily plans on the road?",
-      answer: "Yes! That is the greatest advantage of a private driver. If you feel tired, want to linger longer at a waterfall, or stop for tea tasting, your driver adapts seamlessly."
+      question: "What vehicle options can we choose between?",
+      answer: "For solo travellers and couples (1–3 passengers), we provide comfortable air-conditioned sedans such as the Toyota Premio, Prius, or Axio. For families and small groups (3–8 passengers), we deploy spacious high-roof passenger touring vans (Toyota KDH / HiAce Commuter) featuring dual A/C and generous luggage bays. For larger groups (9–16+ passengers), mini-coaches with PA systems are available."
     },
     {
-      question: "How do we book a driver?",
-      answer: "Simply send us your itinerary or travel dates via WhatsApp (+94 77 774 1615) or our website enquiry form. We will provide an itemized quote within hours."
+      question: "Can we request a tailor-made itinerary or change our plans on the road?",
+      answer: "Yes, absolutely! Having your own private driver gives you total schedule flexibility. If you want an earlier morning start to beat the heat at Sigiriya, wish to pause for fresh king coconuts, or decide to stay longer at an Ella viewpoint, your chauffeur accommodates your personal rhythm. You can also send us a wish-list of places and we will build a realistic daily route for you."
+    },
+    {
+      question: "What are the practical advantages of hiring a local driver over driving yourself?",
+      answer: "Self-driving in Sri Lanka requires navigating narrow roads, mountain switchbacks, local bus traffic, and obtaining local endorsements for foreign driving permits in Colombo. A professional local chauffeur eliminates this stress completely, knows safe alternative routes, assists with language barriers and luggage, and shares authentic historical and cultural insights throughout the trip."
+    },
+    {
+      question: "Are your drivers English-speaking and experienced?",
+      answer: "Yes. All our drivers are fluent in English, and founder Kumar also speaks conversational German. With nearly 40 years of island operation, our drivers are patient, safe, family-oriented, and thoroughly knowledgeable about Sri Lankan history, nature, and scenic stops."
+    },
+    {
+      question: "How do we enquire and confirm a private driver booking?",
+      answer: "You can send us an inquiry via our online booking form or message Kumar & Chathuranga directly on WhatsApp (+94 77 774 1615). Share your travel dates, passenger count, luggage volume, and desired destinations. We will review the route, advise on sensible travel times, and provide a clear, itemized proposal within hours."
     }
   ] as FAQItem[]
 };

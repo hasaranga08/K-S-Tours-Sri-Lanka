@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { FloatingWhatsApp } from './components/FloatingWhatsApp';
+import { ScrollToTop } from './components/ScrollToTop';
 
 import { HomeView } from './views/HomeView';
 import { ToursListView } from './views/ToursListView';
@@ -59,9 +60,20 @@ export default function App() {
   const navigateTo = (path: string) => {
     // Ensure clean trailing slash for SEO consistency
     const normalized = path === '/' ? '/' : (path.endsWith('/') ? path : `${path}/`);
+
+    // If navigating to the exact same page, ensure immediate scroll to top
+    if (normalized === currentPath && !window.location.hash) {
+      try {
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+      } catch {
+        window.scrollTo(0, 0);
+      }
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    }
+
     window.history.pushState(null, '', normalized);
     setCurrentPath(normalized);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   // Router matcher
@@ -210,6 +222,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen flex flex-col bg-neutral-50 text-neutral-900 font-sans selection:bg-amber-100 selection:text-amber-900">
+      <ScrollToTop currentPath={currentPath} />
       <Header currentPath={currentPath} onNavigate={navigateTo} />
       
       <main className="flex-1">

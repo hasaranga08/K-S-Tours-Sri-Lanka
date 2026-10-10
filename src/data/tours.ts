@@ -18,6 +18,8 @@ export const TOURS: TourPackage[] = [
     primaryKeyword: "7 day Sri Lanka tour",
     secondaryKeywords: ["7 days Sri Lanka itinerary", "7 day Sri Lanka tour package", "Sri Lanka 1 week tour", "Sri Lanka private tour 7 days"],
     featured: true,
+    seasonalGuidance: "Ideal year-round. Best conditions from December to April when central hill country and western coastlines enjoy dry, sunny weather. Between May and September, Cultural Triangle stays warm and dry with occasional highland afternoon showers.",
+    routePacingSummary: "Comfortable circular loop covering approximately 480 km over 7 days. Designed to avoid grueling driving stretches, averaging 3 to 3.5 hours on transit days with scenic refreshment stops.",
     overview: "Designed for travelers seeking the quintessential Sri Lankan experience within one week. This carefully paced private tour connects the Cultural Triangle's ancient palaces with the spiritual serenity of Kandy and the lush emerald peaks of Ceylon tea country, ending along the western coastline.",
     highlights: [
       "Climb UNESCO World Heritage Sigiriya Lion Rock at morning light",
@@ -33,43 +35,50 @@ export const TOURS: TourPackage[] = [
         title: "Airport Arrival – Welcome to Negombo",
         description: "Meet your Kumar & Sons driver guide at Bandaranaike International Airport (CMB). Transfer to your beachside hotel in Negombo or Kochchikade. Depending on arrival time, relax by the Indian Ocean or explore the bustling fish market and Dutch canals.",
         stayLocation: "Negombo / Kochchikade",
-        mealsIncluded: "Breakfast included on subsequent days"
+        mealsIncluded: "Breakfast included on subsequent days",
+        estimatedDrive: "Approx. 20–30 mins (12 km) depending on traffic"
       },
       {
         day: 2,
         title: "Negombo to Sigiriya via Pinnawala or Dambulla",
         description: "Depart toward the Cultural Triangle. Stop at the Dambulla Cave Temple to marvel at the centuries-old painted rock caverns and reclining Buddha statues. Arrive in Sigiriya and settle into your hotel surrounded by birdsong and forest greenery.",
-        stayLocation: "Sigiriya / Habarana"
+        stayLocation: "Sigiriya / Habarana",
+        estimatedDrive: "Approx. 3.5–4 hours (145 km) with comfort and sightseeing stops"
       },
       {
         day: 3,
         title: "Sigiriya Lion Rock & Village Culture",
         description: "Early morning ascent of Sigiriya Rock Fortress before the midday heat. Admire the world-renowned frescoes, mirror wall, and 360-degree panorama from the sky citadel. In the afternoon, enjoy an authentic traditional village catamaran ride and clay-pot lunch.",
-        stayLocation: "Sigiriya / Habarana"
+        stayLocation: "Sigiriya / Habarana",
+        estimatedDrive: "Local touring only (under 30 mins / 20 km total)"
       },
       {
         day: 4,
         title: "Sigiriya to Kandy – Spices & Sacred Relics",
         description: "Journey south into the foothills of Kandy. Pause at a fragrant spice garden in Matale to discover how cinnamon, cardamoms, and cloves are grown. In the evening, attend the ceremonial drum ritual at the Temple of the Sacred Tooth Relic.",
-        stayLocation: "Kandy"
+        stayLocation: "Kandy",
+        estimatedDrive: "Approx. 2.5–3 hours (90 km) via Matale scenic route"
       },
       {
         day: 5,
         title: "Kandy to Nuwara Eliya – Scenic Tea Country",
         description: "Visit Peradeniya Royal Botanical Gardens before winding uphill through mist-shrouded valleys past Ramboda Falls. Stop at a working Ceylon tea factory to witness the traditional orthodox rolling and withering process, followed by tea tasting.",
-        stayLocation: "Nuwara Eliya"
+        stayLocation: "Nuwara Eliya",
+        estimatedDrive: "Approx. 2.5–3 hours (75 km) along winding mountain passes"
       },
       {
         day: 6,
         title: "Nuwara Eliya to Negombo / Colombo",
         description: "Enjoy a morning stroll around Lake Gregory or Victoria Park. Descend through the dramatic valleys of Kitulgala (filming site of The Bridge on the River Kwai) with optional white-water rafting, returning to the western coast for your final evening.",
-        stayLocation: "Negombo or Colombo"
+        stayLocation: "Negombo or Colombo",
+        estimatedDrive: "Approx. 4.5–5 hours (160 km) descending the central highlands"
       },
       {
         day: 7,
         title: "Colombo / Negombo to Airport Departure",
         description: "Enjoy breakfast overlooking the water. Your private chauffeur transfers you smoothly to Bandaranaike International Airport with ample time for your onward flight.",
-        stayLocation: "Departure"
+        stayLocation: "Departure",
+        estimatedDrive: "Approx. 20–45 mins depending on departure hotel location"
       }
     ],
     included: [
@@ -118,6 +127,8 @@ export const TOURS: TourPackage[] = [
     primaryKeyword: "10 day Sri Lanka tour",
     secondaryKeywords: ["10 days Sri Lanka itinerary", "10 day Sri Lanka tour package", "Sri Lanka 10 day itinerary with driver", "Sri Lanka holiday packages 10 days"],
     featured: true,
+    seasonalGuidance: "Prime season is November to April for calm seas, sunny southern beaches (Mirissa/Galle), and optimal hill country views. From May to September, this route remains rewarding with green hill scenery and high wildlife activity in Yala.",
+    routePacingSummary: "Comprehensive 850 km island loop connecting ancient kingdoms, central tea peaks, southern safari plains, and coastal expressways. Daily drive segments range between 2 and 4 hours, balanced by 2-night bases in Sigiriya and beach relaxation.",
     overview: "Our signature 10-day island journey delivers the quintessential diversity of Sri Lanka. From the ancient UNESCO wonder of Sigiriya to the spiritual heartbeat of Kandy, the vintage blue train over the Nine Arch Bridge, exhilarating leopard tracking in Yala National Park, and golden southern beaches.",
     highlights: [
       "Climb 5th-century Sigiriya Rock Fortress & explore Dambulla Golden Caves",
@@ -133,61 +144,71 @@ export const TOURS: TourPackage[] = [
         day: 1,
         title: "Arrival – Welcome to Sri Lanka",
         description: "Warm welcome at Bandaranaike International Airport by Kumar & Sons Tours. Transfer to your coastal hotel in Negombo or Kochchikade to unwind.",
-        stayLocation: "Negombo"
+        stayLocation: "Negombo",
+        estimatedDrive: "Approx. 20–30 mins (12 km) airport transfer"
       },
       {
         day: 2,
         title: "Negombo to Cultural Triangle & Dambulla",
         description: "Travel inland through rural coconut landscapes to Dambulla. Explore the world's best-preserved rock cave temple complex with 150+ Buddha images.",
-        stayLocation: "Sigiriya"
+        stayLocation: "Sigiriya",
+        estimatedDrive: "Approx. 3.5–4 hours (145 km) via Kurunegala"
       },
       {
         day: 3,
         title: "Sigiriya Rock Citadel & Minneriya Safari",
         description: "Climb the ancient Lion Rock early morning. Afternoon open-jeep safari at Minneriya or Kaudulla National Park to witness wild elephant herds.",
-        stayLocation: "Sigiriya"
+        stayLocation: "Sigiriya",
+        estimatedDrive: "Approx. 1 hour (45 km) round trip to national park"
       },
       {
         day: 4,
         title: "Sigiriya to Kandy – Spice Gardens & Sacred Tooth",
         description: "Drive south to the hill capital Kandy. Tour Matale spice gardens. In Kandy, visit the sacred Temple of the Tooth and enjoy a Kandyan cultural show.",
-        stayLocation: "Kandy"
+        stayLocation: "Kandy",
+        estimatedDrive: "Approx. 2.5–3 hours (90 km) into central foothills"
       },
       {
         day: 5,
         title: "Kandy to Nuwara Eliya – Tea Country Vistas",
         description: "Wander Peradeniya Botanical Gardens, then drive through spectacular tea hills past Ramboda waterfall to Nuwara Eliya. Tour a working tea factory.",
-        stayLocation: "Nuwara Eliya"
+        stayLocation: "Nuwara Eliya",
+        estimatedDrive: "Approx. 2.5–3 hours (75 km) along mountain roads"
       },
       {
         day: 6,
         title: "Scenic Highland Blue Train to Ella",
         description: "Board the iconic blue train from Nanu Oya station to Ella as it glides over misty mountain gorges and tea terraces. Your driver greets you at Ella station.",
-        stayLocation: "Ella"
+        stayLocation: "Ella",
+        estimatedDrive: "Approx. 2.5–3 hours train ride; driver transports luggage by road"
       },
       {
         day: 7,
         title: "Ella Sights – Nine Arch Bridge to Yala",
         description: "Morning walk to the famous Nine Arch Bridge and hike Little Adam's Peak. Descend past Ravana Falls to the southern wilderness border of Yala.",
-        stayLocation: "Yala / Tissamaharama"
+        stayLocation: "Yala / Tissamaharama",
+        estimatedDrive: "Approx. 2.5–3 hours (105 km) descending to southern plains"
       },
       {
         day: 8,
         title: "Yala National Park Safari to Mirissa Beach",
         description: "Early dawn 4x4 jeep safari in Yala tracking leopards, sloth bears, and crocodiles. Afterward, continue west along the sparkling southern ocean to Mirissa.",
-        stayLocation: "Mirissa"
+        stayLocation: "Mirissa",
+        estimatedDrive: "Approx. 2.5–3 hours (120 km) coastal drive after morning safari"
       },
       {
         day: 9,
         title: "Mirissa to Galle Dutch Fort & West Coast",
         description: "Optional morning whale watching cruise or beach leisure. Afternoon walk atop the 17th-century ramparts of Galle Fort, then drive to your beach hotel.",
-        stayLocation: "Galle / Bentota / Negombo"
+        stayLocation: "Galle / Bentota / Negombo",
+        estimatedDrive: "Approx. 1 hour (35 km) from Mirissa to Galle Fort"
       },
       {
         day: 10,
         title: "Departure Transfer",
         description: "Scenic drive via the expressway to Bandaranaike International Airport in time for your return flight, carrying unforgettable memories of Sri Lanka.",
-        stayLocation: "Departure"
+        stayLocation: "Departure",
+        estimatedDrive: "Approx. 2–2.5 hours (150 km) via Southern Expressway direct to CMB Airport"
       }
     ],
     included: [
@@ -231,6 +252,8 @@ export const TOURS: TourPackage[] = [
     primaryKeyword: "14 day Sri Lanka tour",
     secondaryKeywords: ["14 days Sri Lanka itinerary", "2 week Sri Lanka itinerary", "14 day Sri Lanka tour package", "Sri Lanka private tour 2 weeks"],
     featured: true,
+    seasonalGuidance: "Superb from November to April when southern beaches, western coast, and central highlands enjoy optimal sunshine. From May to September, this itinerary can be seamlessly adapted by substituting southern beaches with the golden sands of Trincomalee or Passikudah on the east coast.",
+    routePacingSummary: "Our most relaxed grand circuit covering approximately 1,150 km over 14 days. Incorporates multiple two-night hotel stays (Anuradhapura/Sigiriya, Kandy, Ella, and South Coast) to eliminate the fatigue of daily packing.",
     overview: "A deeply immersive 14-day tour that doesn't rush. Explore both ancient capitals (Anuradhapura and Polonnaruwa), hike through high cloud forests at Horton Plains, take the legendary hill train, track leopards in Yala, spot blue whales in Mirissa, and unwind along pristine golden sands.",
     highlights: [
       "Explore both ancient UNESCO capitals: Anuradhapura and Polonnaruwa",
@@ -242,20 +265,20 @@ export const TOURS: TourPackage[] = [
       "Leisurely multi-night stays allowing relaxed travel without daily packing"
     ],
     itinerary: [
-      { day: 1, title: "Arrival in Sri Lanka – Coastal Negombo", description: "Meet your Kumar & Sons driver guide and relax by the coast.", stayLocation: "Negombo" },
-      { day: 2, title: "Negombo to Anuradhapura Ancient Capital", description: "Journey north to explore 2,000-year-old stupas and the sacred Jaya Sri Maha Bodhi tree.", stayLocation: "Anuradhapura" },
-      { day: 3, title: "Anuradhapura to Sigiriya via Mihintale", description: "Ascend the sacred mountain of Mihintale, birthplace of Buddhism in Sri Lanka, before heading to Sigiriya.", stayLocation: "Sigiriya" },
-      { day: 4, title: "Sigiriya Rock Citadel & Polonnaruwa Ruins", description: "Morning climb of Sigiriya Rock Fortress. Afternoon bicycle or car tour of royal Polonnaruwa.", stayLocation: "Sigiriya" },
-      { day: 5, title: "Sigiriya to Kandy via Dambulla & Spice Gardens", description: "Explore Dambulla Caves and Matale spice estates on the way to Kandy.", stayLocation: "Kandy" },
-      { day: 6, title: "Kandy Cultural Immersion", description: "Visit Temple of the Tooth, Peradeniya Gardens, and scenic viewpoint over Kandy Lake.", stayLocation: "Kandy" },
-      { day: 7, title: "Kandy to Nuwara Eliya Highland Tea Country", description: "Drive through waterfall country to Nuwara Eliya. Tour an orthodox tea plantation and factory.", stayLocation: "Nuwara Eliya" },
-      { day: 8, title: "Horton Plains World's End Trek & Train to Ella", description: "Dawn hike to World's End and Baker's Falls, then board the afternoon train to Ella.", stayLocation: "Ella" },
-      { day: 9, title: "Ella Gap, Nine Arch Bridge & Waterfalls", description: "Visit Nine Arch Bridge, hike Little Adam's Peak, and enjoy Ella's relaxed cafe culture.", stayLocation: "Ella" },
-      { day: 10, title: "Ella to Yala National Park Wilderness", description: "Descend to the dry zone scrublands of Yala. Afternoon leopard and elephant safari.", stayLocation: "Yala" },
-      { day: 11, title: "Yala to Mirissa Southern Coastline", description: "Travel along the south coast to Mirissa. Relax on sandy beaches under coconut palms.", stayLocation: "Mirissa" },
-      { day: 12, title: "Mirissa Whale Watching & Galle Fort", description: "Morning boat excursion for blue whales and dolphins. Afternoon walk atop Galle Fort ramparts.", stayLocation: "Galle / Bentota" },
-      { day: 13, title: "Coastal Relaxation & Sea Turtle Sanctuary", description: "A leisurely beach day in Bentota with optional water sports or lagoon boat safari.", stayLocation: "Bentota" },
-      { day: 14, title: "Departure via Colombo", description: "Direct transfer via Southern Expressway to Bandaranaike Airport for departure.", stayLocation: "Departure" }
+      { day: 1, title: "Arrival in Sri Lanka – Coastal Negombo", description: "Meet your Kumar & Sons driver guide and relax by the coast.", stayLocation: "Negombo", estimatedDrive: "Approx. 20–30 mins (12 km) from CMB Airport" },
+      { day: 2, title: "Negombo to Anuradhapura Ancient Capital", description: "Journey north to explore 2,000-year-old stupas and the sacred Jaya Sri Maha Bodhi tree.", stayLocation: "Anuradhapura", estimatedDrive: "Approx. 4 hours (165 km) via Puttalam" },
+      { day: 3, title: "Anuradhapura to Sigiriya via Mihintale", description: "Ascend the sacred mountain of Mihintale, birthplace of Buddhism in Sri Lanka, before heading to Sigiriya.", stayLocation: "Sigiriya", estimatedDrive: "Approx. 1.5–2 hours (75 km)" },
+      { day: 4, title: "Sigiriya Rock Citadel & Polonnaruwa Ruins", description: "Morning climb of Sigiriya Rock Fortress. Afternoon bicycle or car tour of royal Polonnaruwa.", stayLocation: "Sigiriya", estimatedDrive: "Approx. 1 hour (55 km each way to Polonnaruwa)" },
+      { day: 5, title: "Sigiriya to Kandy via Dambulla & Spice Gardens", description: "Explore Dambulla Caves and Matale spice estates on the way to Kandy.", stayLocation: "Kandy", estimatedDrive: "Approx. 2.5–3 hours (90 km)" },
+      { day: 6, title: "Kandy Cultural Immersion", description: "Visit Temple of the Tooth, Peradeniya Gardens, and scenic viewpoint over Kandy Lake.", stayLocation: "Kandy", estimatedDrive: "Local city travel (approx. 15–20 km total)" },
+      { day: 7, title: "Kandy to Nuwara Eliya Highland Tea Country", description: "Drive through waterfall country to Nuwara Eliya. Tour an orthodox tea plantation and factory.", stayLocation: "Nuwara Eliya", estimatedDrive: "Approx. 2.5–3 hours (75 km)" },
+      { day: 8, title: "Horton Plains World's End Trek & Train to Ella", description: "Dawn hike to World's End and Baker's Falls, then board the afternoon train to Ella.", stayLocation: "Ella", estimatedDrive: "Approx. 1 hr drive to Horton Plains; afternoon train ride to Ella" },
+      { day: 9, title: "Ella Gap, Nine Arch Bridge & Waterfalls", description: "Visit Nine Arch Bridge, hike Little Adam's Peak, and enjoy Ella's relaxed cafe culture.", stayLocation: "Ella", estimatedDrive: "Local touring around Ella (under 25 km)" },
+      { day: 10, title: "Ella to Yala National Park Wilderness", description: "Descend to the dry zone scrublands of Yala. Afternoon leopard and elephant safari.", stayLocation: "Yala", estimatedDrive: "Approx. 2.5–3 hours (105 km)" },
+      { day: 11, title: "Yala to Mirissa Southern Coastline", description: "Travel along the south coast to Mirissa. Relax on sandy beaches under coconut palms.", stayLocation: "Mirissa", estimatedDrive: "Approx. 2.5–3 hours (120 km) along scenic southern coastline" },
+      { day: 12, title: "Mirissa Whale Watching & Galle Fort", description: "Morning boat excursion for blue whales and dolphins. Afternoon walk atop Galle Fort ramparts.", stayLocation: "Galle / Bentota", estimatedDrive: "Approx. 1 hour (35 km) to Galle, plus 45 mins to Bentota" },
+      { day: 13, title: "Coastal Relaxation & Sea Turtle Sanctuary", description: "A leisurely beach day in Bentota with optional water sports or lagoon boat safari.", stayLocation: "Bentota", estimatedDrive: "Rest day; optional short local excursions" },
+      { day: 14, title: "Departure via Colombo", description: "Direct transfer via Southern Expressway to Bandaranaike Airport for departure.", stayLocation: "Departure", estimatedDrive: "Approx. 1.5–2 hours (110 km) via Southern Expressway" }
     ],
     included: [
       "All private ground transport with fuel, driver guide, and tolls",

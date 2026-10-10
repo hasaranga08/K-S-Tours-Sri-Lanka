@@ -97,7 +97,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
 
           {/* Subtitle */}
           <p className="max-w-2xl mx-auto text-base sm:text-xl text-neutral-200 font-normal leading-relaxed drop-shadow-sm">
-            Bespoke private tours, wild elephant safaris, scenic mountain rail journeys, and reliable chauffeur-driven transport guided by Kumar &amp; Chathuranga.
+            Handcrafted 7-, 10- and 14-day itineraries, custom tailor-made holidays, wild elephant safaris, and dedicated private driver hire guided by Kumar &amp; Chathuranga.
           </p>
 
           {/* Action Button Row */}
@@ -456,12 +456,20 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
         </div>
 
         {/* Explore All Tours Link */}
-        <div className="text-center pt-2">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
           <button
             onClick={() => onNavigate('/sri-lanka-tours/')}
             className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-neutral-900 hover:bg-neutral-800 text-white text-sm font-semibold shadow-xs hover:shadow-md transition-all cursor-pointer"
           >
-            <span>View All Tour Packages (Including Day Tours)</span>
+            <span>View All Tour Packages (7, 10 &amp; 14-Day Itineraries)</span>
+            <ArrowRight className="w-4 h-4" />
+          </button>
+
+          <button
+            onClick={() => onNavigate('/sri-lanka-private-driver/')}
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white hover:bg-neutral-100 text-neutral-800 border border-neutral-300 text-sm font-semibold shadow-xs transition-all cursor-pointer"
+          >
+            <span>Hire a Private Driver Only</span>
             <ArrowRight className="w-4 h-4" />
           </button>
         </div>
@@ -526,7 +534,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
       {/* =========================================================================
           7. REAL JOURNEYS WITH KS TOURS (Homepage Real Photos Gallery)
          ========================================================================= */}
-      <CustomerGallery onNavigate={onNavigate} />
+      <CustomerGallery onNavigate={onNavigate} showTextOverlay={false} />
 
       {/* =========================================================================
           8. ACTIVITIES IN SRI LANKA (Showcase from Activities Page)

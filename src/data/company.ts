@@ -1,7 +1,7 @@
 /**
  * Centralized company information for Kumar & Sons Tours Sri Lanka (KS Tours).
- * Preserves authentic details discovered from existing business records.
- * Unprovided items use standard placeholders [PLACEHOLDER].
+ * Authenticated details discovered from existing business records.
+ * Unprovided items remain undefined pending owner confirmation.
  */
 
 export const COMPANY_INFO = {
@@ -37,9 +37,9 @@ export const COMPANY_INFO = {
   facebookUrl: "https://www.facebook.com/profile.php?id=61559690577480",
   instagramUrl: "https://www.instagram.com/ks_tours_srilanka",
   
-  // Placeholders for pending user details
-  companyRegistrationNumber: "[COMPANY_REGISTRATION_NUMBER]",
-  licenseNumber: "[SLTDA_LICENSE_NUMBER_IF_APPLICABLE]",
+  // Pending owner confirmation:
+  companyRegistrationNumber: undefined as string | undefined,
+  licenseNumber: undefined as string | undefined,
 };
 
 /**

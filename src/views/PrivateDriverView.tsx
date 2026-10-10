@@ -17,7 +17,8 @@ import {
   Compass, 
   Fuel, 
   DollarSign,
-  HeartHandshake
+  HeartHandshake,
+  ArrowRight
 } from 'lucide-react';
 
 interface PrivateDriverViewProps {
@@ -195,6 +196,51 @@ export const PrivateDriverView: React.FC<PrivateDriverViewProps> = ({ onNavigate
             At Kumar &amp; Sons Tours, we have operated on trust and family integrity for nearly 40 years. We only stop at places <strong>you want to visit</strong>. Your driver is there to serve you, protect you, and guide you safely across our beautiful homeland.
           </p>
         </div>
+      </section>
+
+      {/* Tailor-Made & Itinerary Integration Banner */}
+      <section className="bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200/80 rounded-2xl p-6 sm:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <div className="space-y-2 max-w-2xl">
+          <span className="text-xs font-semibold uppercase tracking-wider text-amber-800 flex items-center gap-1.5">
+            <Compass className="w-4 h-4 text-amber-700" />
+            <span>Need Route Planning Support?</span>
+          </span>
+          <h3 className="font-serif text-xl sm:text-2xl font-bold text-neutral-900">
+            Combine Your Chauffeur With a Custom Itinerary
+          </h3>
+          <p className="text-xs sm:text-sm text-neutral-700 leading-relaxed">
+            Not sure how to structure your route across Sigiriya, Kandy, Nuwara Eliya, Ella, and Yala? Explore our{' '}
+            <button
+              onClick={() => onNavigate('/tailor-made-sri-lanka-tours/')}
+              className="text-amber-900 font-semibold underline hover:text-amber-950 cursor-pointer"
+            >
+              tailor-made Sri Lanka tours
+            </button>{' '}
+            or browse our proven{' '}
+            <button
+              onClick={() => onNavigate('/sri-lanka-tours/')}
+              className="text-amber-900 font-semibold underline hover:text-amber-950 cursor-pointer"
+            >
+              multi-day tour packages
+            </button>{' '}
+            for inspiration. We can also arrange direct{' '}
+            <button
+              onClick={() => onNavigate('/sri-lanka-airport-transfers/')}
+              className="text-amber-900 font-semibold underline hover:text-amber-950 cursor-pointer"
+            >
+              Colombo airport transfers
+            </button>{' '}
+            on arrival.
+          </p>
+        </div>
+
+        <button
+          onClick={() => onNavigate('/tailor-made-sri-lanka-tours/')}
+          className="shrink-0 inline-flex items-center gap-2 px-5 py-3 bg-amber-700 hover:bg-amber-800 text-white text-xs font-semibold rounded-xl shadow-xs transition-colors cursor-pointer"
+        >
+          <span>Design Custom Tour</span>
+          <ArrowRight className="w-4 h-4" />
+        </button>
       </section>
 
       {/* Real Traveler Moments with Our Chauffeurs */}
