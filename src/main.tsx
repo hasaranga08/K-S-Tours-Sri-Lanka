@@ -36,9 +36,31 @@ if (typeof window !== 'undefined') {
   };
 
   // When deployed under a subpath on GitHub Pages (/K-S-Tours-Sri-Lanka/),
-  // intercept any images that fail due to origin-relative paths (/images/...) and retry with the base path.
+  // automatically rewrite origin-relative image paths (/images/...) to include the base path
   const base = (import.meta.env.BASE_URL || '/').replace(/\/$/, '');
   if (base) {
+    try {
+      const originalDesc = Object.getOwnPropertyDescriptor(HTMLImageElement.prototype, 'src');
+      if (originalDesc && originalDesc.set) {
+        Object.defineProperty(HTMLImageElement.prototype, 'src', {
+          set(value: string) {
+            if (typeof value === 'string' && value.startsWith('/images/') && !value.startsWith(`${base}/`)) {
+              originalDesc.set!.call(this, `${base}${value}`);
+            } else {
+              originalDesc.set!.call(this, value);
+            }
+          },
+          get() {
+            return originalDesc.get!.call(this);
+          },
+          configurable: true,
+          enumerable: true,
+        });
+      }
+    } catch {
+      // Fallback to error listener if descriptor modification is restricted
+    }
+
     window.addEventListener(
       'error',
       (event) => {
