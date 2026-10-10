@@ -31,6 +31,23 @@ import { TRAVEL_ROUTES } from './data/routes';
 import { BLOG_POSTS } from './data/blog';
 import { Compass, ArrowRight } from 'lucide-react';
 
+// Base path configured for deployment (e.g. '/K-S-Tours-Sri-Lanka' on GitHub Pages or '' on custom domain)
+const BASE_PATH = (import.meta.env.BASE_URL || '/').replace(/\/$/, '');
+
+const stripBasePath = (pathname: string): string => {
+  if (BASE_PATH && pathname.startsWith(BASE_PATH)) {
+    const stripped = pathname.slice(BASE_PATH.length);
+    return stripped.startsWith('/') ? stripped : `/${stripped}`;
+  }
+  return pathname || '/';
+};
+
+const withBasePath = (route: string): string => {
+  if (!BASE_PATH) return route;
+  const cleanRoute = route.startsWith('/') ? route : `/${route}`;
+  return `${BASE_PATH}${cleanRoute}`;
+};
+
 export default function App() {
   // Support GitHub Pages SPA redirect query: ?/destinations/sigiriya/
   const getInitialPath = (): string => {
@@ -39,11 +56,12 @@ export default function App() {
     const search = window.location.search;
     if (search.startsWith('?/')) {
       const redirectedPath = search.slice(1).split('&')[0].replace(/~and~/g, '&');
-      window.history.replaceState(null, '', redirectedPath);
-      return redirectedPath;
+      const cleanPath = redirectedPath.startsWith('/') ? redirectedPath : `/${redirectedPath}`;
+      window.history.replaceState(null, '', withBasePath(cleanPath));
+      return cleanPath;
     }
     
-    return window.location.pathname || '/';
+    return stripBasePath(window.location.pathname) || '/';
   };
 
   const [currentPath, setCurrentPath] = useState<string>(getInitialPath);
@@ -51,7 +69,7 @@ export default function App() {
   // Handle browser back/forward buttons
   useEffect(() => {
     const handlePopState = () => {
-      setCurrentPath(window.location.pathname || '/');
+      setCurrentPath(stripBasePath(window.location.pathname) || '/');
     };
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
@@ -72,7 +90,7 @@ export default function App() {
       document.body.scrollTop = 0;
     }
 
-    window.history.pushState(null, '', normalized);
+    window.history.pushState(null, '', withBasePath(normalized));
     setCurrentPath(normalized);
   };
 

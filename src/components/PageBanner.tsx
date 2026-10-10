@@ -1,5 +1,6 @@
 import React from 'react';
 import { Breadcrumbs, BreadcrumbItem } from './Breadcrumbs';
+import { assetUrl } from '../utils/asset';
 
 interface PageBannerProps {
   title: string | React.ReactNode;
@@ -33,7 +34,7 @@ export const PageBanner: React.FC<PageBannerProps> = ({
       <div
         className="absolute inset-0 bg-cover bg-center transition-transform duration-700"
         style={{
-          backgroundImage: `url('${image}')`,
+          backgroundImage: `url('${assetUrl(image)}')`,
           backgroundPosition: 'center 40%'
         }}
         aria-hidden="true"

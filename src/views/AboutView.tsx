@@ -3,6 +3,7 @@ import { useSEO } from '../hooks/useSEO';
 import { COMPANY_INFO, getWhatsAppUrl } from '../data/company';
 import { Breadcrumbs } from '../components/Breadcrumbs';
 import { TripAdvisorWidget } from '../components/TripAdvisorWidget';
+import { assetUrl } from '../utils/asset';
 import { 
   Compass, 
   ShieldCheck, 
@@ -63,7 +64,7 @@ export const AboutView: React.FC<AboutViewProps> = ({ onNavigate }) => {
         <div 
           className="absolute inset-0 bg-cover bg-center transition-transform duration-700"
           style={{
-            backgroundImage: "url('/images/G4.jpg')",
+            backgroundImage: `url('${assetUrl('/images/G4.jpg')}')`,
             backgroundPosition: 'center 45%'
           }}
           aria-hidden="true"
