@@ -1,5 +1,6 @@
 import React from 'react';
 import { COMPANY_INFO, getWhatsAppUrl } from '../data/company';
+import { assetUrl } from '../utils/asset';
 import { 
   Phone, 
   Mail, 
@@ -38,7 +39,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               className="inline-block"
             >
               <img 
-                src="/images/White Logo.png" 
+                src={assetUrl('/images/White Logo.png')} 
                 alt="Kumar &amp; Sons Tours Sri Lanka" 
                 className="h-14 w-auto object-contain max-w-[240px]" 
                 width="240"

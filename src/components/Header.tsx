@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { COMPANY_INFO, getWhatsAppUrl } from '../data/company';
+import { assetUrl } from '../utils/asset';
 import { 
   MessageCircle, 
   Menu, 
@@ -65,7 +66,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
           aria-label="Kumar & Sons Tours Sri Lanka Homepage"
         >
           <img 
-            src="/images/KS Logo.png" 
+            src={assetUrl('/images/KS Logo.png')} 
             alt="Kumar &amp; Sons Tours Sri Lanka" 
             className="h-11 sm:h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-102"
             width="220"

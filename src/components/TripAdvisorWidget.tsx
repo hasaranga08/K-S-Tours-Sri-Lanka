@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { COMPANY_INFO } from '../data/company';
+import { assetUrl } from '../utils/asset';
 import { ExternalLink, Star, ShieldCheck } from 'lucide-react';
 
 interface TripAdvisorWidgetProps {
@@ -53,7 +54,7 @@ export const TripAdvisorWidget: React.FC<TripAdvisorWidgetProps> = ({
             title="View verified reviews on TripAdvisor"
           >
             <img
-              src="/images/Review.jpg"
+              src={assetUrl('/images/Review.jpg')}
               alt="TripAdvisor guest reviews and ratings for Kumar & Sons Tours Sri Lanka"
               className="w-full h-auto object-cover group-hover:opacity-95 transition-opacity"
               width="1280"

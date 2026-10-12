@@ -34,6 +34,43 @@ if (typeof window !== 'undefined') {
     }
     return false;
   };
+
+  // Automatically rewrite origin-relative image paths (/images/...) to include base path on subpath deployments
+  const base = (import.meta.env.BASE_URL || '/').replace(/\/$/, '');
+  if (base) {
+    const originalSrcDesc = Object.getOwnPropertyDescriptor(HTMLImageElement.prototype, 'src');
+    if (originalSrcDesc && originalSrcDesc.set) {
+      const originalSet = originalSrcDesc.set;
+      Object.defineProperty(HTMLImageElement.prototype, 'src', {
+        set(value: string) {
+          if (typeof value === 'string' && value.startsWith('/images/')) {
+            originalSet.call(this, `${base}${value}`);
+          } else {
+            originalSet.call(this, value);
+          }
+        },
+        get: originalSrcDesc.get,
+        configurable: true,
+        enumerable: true,
+      });
+    }
+
+    // Fallback error handler in case an image is created outside the standard prototype setter
+    window.addEventListener(
+      'error',
+      (e) => {
+        const target = e.target as HTMLElement;
+        if (target && target.tagName === 'IMG') {
+          const img = target as HTMLImageElement;
+          const currentSrc = img.getAttribute('src');
+          if (currentSrc && currentSrc.startsWith('/images/')) {
+            img.src = `${base}${currentSrc}`;
+          }
+        }
+      },
+      true
+    );
+  }
 }
 
 createRoot(document.getElementById('root')!).render(<App />);
