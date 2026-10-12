@@ -34,24 +34,10 @@ jobs:
         run: npm ci
 
       - name: Setup Pages
-        id: pages
         uses: actions/configure-pages@v5
 
       - name: Build project
         run: npm run build
-        env:
-          VITE_BASE_PATH: ${{ steps.pages.outputs.base_path }}
-
-      - name: Configure CNAME for deployment target
-        run: |
-          if [ -n "${{ steps.pages.outputs.base_path }}" ]; then
-            echo "Deploying to GitHub Pages subpath (${{ steps.pages.outputs.base_path }})."
-            echo "Removing CNAME from dist so github.io does not redirect."
-            rm -f dist/CNAME
-          else
-            echo "Deploying to custom domain. Ensuring CNAME is present in dist."
-            echo "www.kstourssrilanka.com" > dist/CNAME
-          fi
 
       - name: Verify production build output
         run: |
@@ -63,7 +49,16 @@ jobs:
             echo "Error: dist/index.html contains /src/main.tsx! The production build must reference compiled bundles."
             exit 1
           fi
-          echo "Build verification passed: dist/index.html references compiled production bundles."
+          if [ ! -f "dist/CNAME" ]; then
+            echo "Error: dist/CNAME is missing! It must contain www.kstourssrilanka.com."
+            exit 1
+          fi
+          CNAME_CONTENT=$(cat dist/CNAME | tr -d '[:space:]')
+          if [ "$CNAME_CONTENT" != "www.kstourssrilanka.com" ]; then
+            echo "Error: dist/CNAME does not match www.kstourssrilanka.com (found: $CNAME_CONTENT)"
+            exit 1
+          fi
+          echo "Build verification passed: dist/index.html and dist/CNAME are valid for www.kstourssrilanka.com."
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

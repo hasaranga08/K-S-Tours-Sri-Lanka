@@ -4,21 +4,8 @@ import path from 'path';
 import {defineConfig} from 'vite';
 
 export default defineConfig(() => {
-  // Support dynamic base path via VITE_BASE_PATH environment variable:
-  // - On GitHub Pages project site: '/K-S-Tours-Sri-Lanka/'
-  // - On custom domain (www.kstourssrilanka.com): '/'
-  let base = '/K-S-Tours-Sri-Lanka/';
-  if (process.env.VITE_BASE_PATH !== undefined) {
-    const raw = process.env.VITE_BASE_PATH.trim();
-    if (!raw || raw === '/') {
-      base = '/';
-    } else {
-      base = raw.endsWith('/') ? raw : `${raw}/`;
-    }
-  }
-
   return {
-    base,
+    base: '/',
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {
