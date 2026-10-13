@@ -3,6 +3,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { render } from '../src/entry-server';
 import { COMPANY_INFO } from '../src/data/company';
+import { LEGACY_REDIRECTS } from '../src/data/legacyRedirects';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -185,6 +186,100 @@ async function prerender() {
   } else {
     console.log('All sitemap routes mapped to valid, populated page views with 0 errors.');
   }
+
+  // --- Generate static legacy redirect HTML files ---
+  console.log('--- Generating Static Legacy Redirect HTML Files ---');
+  
+  // Track unique files to write: relativeFilePath -> { targetUrl, title }
+  const filesToWrite = new Map<string, { targetUrl: string; title: string }>();
+
+  for (const item of LEGACY_REDIRECTS) {
+    const canonicalTarget = `${COMPANY_INFO.canonicalOrigin}${item.targetPath}`;
+    const rawLegacyPath = item.legacyPath.replace(/^\//, '');
+
+    let decodedPath = rawLegacyPath;
+    try {
+      decodedPath = decodeURIComponent(rawLegacyPath);
+    } catch {
+      // ignore
+    }
+
+    // Variations: raw, decoded, and properly encoded spaces/parentheses
+    const variants = new Set<string>();
+    variants.add(rawLegacyPath);
+    variants.add(decodedPath);
+    variants.add(rawLegacyPath.toLowerCase());
+    variants.add(decodedPath.toLowerCase());
+
+    // Also handle URL-encoded parentheses and spaces explicitly if present
+    if (decodedPath.includes(' ') || decodedPath.includes('(') || decodedPath.includes(')')) {
+      const reEncoded = decodedPath
+        .replace(/ /g, '%20')
+        .replace(/\(/g, '%28')
+        .replace(/\)/g, '%29');
+      variants.add(reEncoded);
+      variants.add(reEncoded.toLowerCase());
+    }
+
+    for (const variant of variants) {
+      if (!variant) continue;
+      // Never overwrite a canonical route's index.html
+      if (variant.endsWith('/index.html') || variant === 'index.html') continue;
+      
+      filesToWrite.set(variant, {
+        targetUrl: canonicalTarget,
+        title: item.title,
+      });
+    }
+  }
+
+  let redirectCount = 0;
+  for (const [relativePath, data] of filesToWrite.entries()) {
+    const targetFilePath = path.resolve(distDir, relativePath);
+    const parentDir = path.dirname(targetFilePath);
+    fs.mkdirSync(parentDir, { recursive: true });
+
+    const redirectHtml = generateLegacyRedirectHtml(data.targetUrl, data.title);
+    fs.writeFileSync(targetFilePath, redirectHtml, 'utf-8');
+    redirectCount++;
+  }
+
+  console.log(`Successfully generated ${redirectCount} unique static legacy redirect HTML files in dist/.`);
+}
+
+function generateLegacyRedirectHtml(targetUrl: string, title: string): string {
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Redirecting to ${escapeHtml(title)} | KS Tours Sri Lanka</title>
+  <link rel="canonical" href="${targetUrl}" />
+  <meta http-equiv="refresh" content="0; url=${targetUrl}" />
+  <meta name="robots" content="index, follow" />
+  <meta name="description" content="This page has permanently moved to ${escapeAttr(targetUrl)}. Redirecting to ${escapeAttr(title)} on Kumar &amp; Sons Tours Sri Lanka." />
+  <script type="text/javascript">
+    window.location.replace("${targetUrl}");
+  </script>
+</head>
+<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #FAF8F5; color: #1a1a1a; padding: 48px 20px; text-align: center; line-height: 1.6;">
+  <div style="max-width: 600px; margin: 0 auto; background: #ffffff; padding: 36px 28px; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); border: 1px solid #ebe5df;">
+    <div style="width: 56px; height: 56px; margin: 0 auto 20px; border-radius: 50%; background: #E6F4F2; color: #0D7C78; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: bold;">✓</div>
+    <h1 style="font-size: 22px; font-weight: 700; margin-bottom: 12px; color: #1a1a1a;">Page Permanently Moved</h1>
+    <p style="font-size: 15px; color: #555; margin-bottom: 24px;">
+      This legacy page has moved to our updated website:
+    </p>
+    <p style="margin-bottom: 28px;">
+      <a href="${targetUrl}" style="display: inline-block; background-color: #0D7C78; color: #ffffff; padding: 12px 24px; border-radius: 10px; font-weight: 600; text-decoration: none; font-size: 15px;">
+        Continue to ${escapeHtml(title)} &rarr;
+      </a>
+    </p>
+    <p style="font-size: 12px; color: #888; margin: 0;">
+      Kumar &amp; Sons Tours Sri Lanka &bull; Nearly 40 Years of Local Guiding Expertise
+    </p>
+  </div>
+</body>
+</html>`;
 }
 
 function escapeHtml(str: string): string {

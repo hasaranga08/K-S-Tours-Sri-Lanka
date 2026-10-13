@@ -29,6 +29,7 @@ import { DAY_TOURS } from './data/dayTours';
 import { DESTINATIONS } from './data/destinations';
 import { TRAVEL_ROUTES } from './data/routes';
 import { BLOG_POSTS } from './data/blog';
+import { resolveLegacyRoute } from './data/legacyRedirects';
 import { Compass, ArrowRight } from 'lucide-react';
 
 // Base path configured for deployment (e.g. '/K-S-Tours-Sri-Lanka' on GitHub Pages or '' on custom domain)
@@ -51,18 +52,29 @@ const withBasePath = (route: string): string => {
 export default function App({ initialPath }: { initialPath?: string } = {}) {
   // Support GitHub Pages SPA redirect query: ?/destinations/sigiriya/
   const getInitialPath = (): string => {
-    if (initialPath) return initialPath;
+    if (initialPath) {
+      const legacyTarget = resolveLegacyRoute(initialPath);
+      return legacyTarget || initialPath;
+    }
     if (typeof window === 'undefined') return '/';
     
     const search = window.location.search;
     if (search.startsWith('?/')) {
       const redirectedPath = search.slice(1).split('&')[0].replace(/~and~/g, '&');
       const cleanPath = redirectedPath.startsWith('/') ? redirectedPath : `/${redirectedPath}`;
-      window.history.replaceState(null, '', withBasePath(cleanPath));
-      return cleanPath;
+      const legacyTarget = resolveLegacyRoute(cleanPath);
+      const finalPath = legacyTarget || cleanPath;
+      window.history.replaceState(null, '', withBasePath(finalPath));
+      return finalPath;
     }
     
-    return stripBasePath(window.location.pathname) || '/';
+    const rawPath = stripBasePath(window.location.pathname) || '/';
+    const legacyTarget = resolveLegacyRoute(rawPath);
+    if (legacyTarget && legacyTarget !== rawPath) {
+      window.history.replaceState(null, '', withBasePath(legacyTarget));
+      return legacyTarget;
+    }
+    return rawPath;
   };
 
   const [currentPath, setCurrentPath] = useState<string>(getInitialPath);
@@ -70,7 +82,9 @@ export default function App({ initialPath }: { initialPath?: string } = {}) {
   // Handle browser back/forward buttons
   useEffect(() => {
     const handlePopState = () => {
-      setCurrentPath(stripBasePath(window.location.pathname) || '/');
+      const raw = stripBasePath(window.location.pathname) || '/';
+      const resolved = resolveLegacyRoute(raw) || raw;
+      setCurrentPath(resolved);
     };
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
@@ -97,7 +111,9 @@ export default function App({ initialPath }: { initialPath?: string } = {}) {
 
   // Router matcher
   const renderCurrentView = () => {
-    const path = currentPath;
+    const rawPath = currentPath;
+    const legacyTarget = resolveLegacyRoute(rawPath);
+    const path = legacyTarget || rawPath;
 
     // Homepage
     if (path === '/' || path === '') {
