@@ -58,7 +58,15 @@ jobs:
             echo "Error: dist/CNAME does not match www.kstourssrilanka.com (found: $CNAME_CONTENT)"
             exit 1
           fi
-          echo "Build verification passed: dist/index.html and dist/CNAME are valid for www.kstourssrilanka.com."
+          if [ ! -f "dist/sri-lanka-tours/index.html" ]; then
+            echo "Error: dist/sri-lanka-tours/index.html was not prerendered!"
+            exit 1
+          fi
+          if [ ! -f "dist/itineraries/7-day-sri-lanka-tour/index.html" ]; then
+            echo "Error: dist/itineraries/7-day-sri-lanka-tour/index.html was not prerendered!"
+            exit 1
+          fi
+          echo "Build verification passed: dist/index.html, prerendered route HTML, and dist/CNAME are valid for www.kstourssrilanka.com."
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

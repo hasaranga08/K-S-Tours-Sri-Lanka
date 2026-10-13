@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
+import { useEffect, createContext, useContext } from 'react';
 import { COMPANY_INFO } from '../data/company';
 
-interface SEOProps {
+export interface SEOProps {
   title: string;
   description: string;
   canonicalPath?: string;
@@ -10,6 +10,13 @@ interface SEOProps {
   schema?: object | object[];
   noIndex?: boolean;
 }
+
+export interface SEOContextType {
+  setSEO: (props: SEOProps) => void;
+  getSEO: () => SEOProps | undefined;
+}
+
+export const SEOContext = createContext<SEOContextType | null>(null);
 
 export function useSEO({
   title,
@@ -20,7 +27,21 @@ export function useSEO({
   schema,
   noIndex = false,
 }: SEOProps) {
+  const seoCtx = useContext(SEOContext);
+  if (seoCtx) {
+    seoCtx.setSEO({
+      title,
+      description,
+      canonicalPath,
+      ogType,
+      ogImage,
+      schema,
+      noIndex,
+    });
+  }
+
   useEffect(() => {
+    if (typeof window === 'undefined') return;
     // 1. Title formatting: ensure KS Tours or Kumar & Sons branding
     const fullTitle = title.includes('Kumar & Sons') || title.includes('KS Tours')
       ? title

@@ -32,7 +32,7 @@ import { BLOG_POSTS } from './data/blog';
 import { Compass, ArrowRight } from 'lucide-react';
 
 // Base path configured for deployment (e.g. '/K-S-Tours-Sri-Lanka' on GitHub Pages or '' on custom domain)
-const BASE_PATH = (import.meta.env.BASE_URL || '/').replace(/\/$/, '');
+const BASE_PATH = ((typeof import.meta !== 'undefined' && import.meta?.env?.BASE_URL) || '/').replace(/\/$/, '');
 
 const stripBasePath = (pathname: string): string => {
   if (BASE_PATH && pathname.startsWith(BASE_PATH)) {
@@ -48,9 +48,10 @@ const withBasePath = (route: string): string => {
   return `${BASE_PATH}${cleanRoute}`;
 };
 
-export default function App() {
+export default function App({ initialPath }: { initialPath?: string } = {}) {
   // Support GitHub Pages SPA redirect query: ?/destinations/sigiriya/
   const getInitialPath = (): string => {
+    if (initialPath) return initialPath;
     if (typeof window === 'undefined') return '/';
     
     const search = window.location.search;

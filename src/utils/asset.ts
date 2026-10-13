@@ -8,7 +8,7 @@ export const assetUrl = (path: string | undefined): string => {
   if (path.startsWith('http://') || path.startsWith('https://') || path.startsWith('data:') || path.startsWith('blob:')) {
     return path;
   }
-  const base = (import.meta.env.BASE_URL || '/').replace(/\/$/, '');
+  const base = ((typeof import.meta !== 'undefined' && import.meta?.env?.BASE_URL) || '/').replace(/\/$/, '');
   const cleanPath = path.startsWith('/') ? path : `/${path}`;
   if (base && cleanPath.startsWith(`${base}/`)) {
     return cleanPath;
