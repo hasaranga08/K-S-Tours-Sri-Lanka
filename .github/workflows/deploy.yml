@@ -66,7 +66,15 @@ jobs:
             echo "Error: dist/itineraries/7-day-sri-lanka-tour/index.html was not prerendered!"
             exit 1
           fi
-          echo "Build verification passed: dist/index.html, prerendered route HTML, and dist/CNAME are valid for www.kstourssrilanka.com."
+          if [ ! -f "dist/sitemap.xml" ]; then
+            echo "Error: dist/sitemap.xml is missing!"
+            exit 1
+          fi
+          if grep -q "<url>[[:space:]]*</url>" dist/sitemap.xml; then
+            echo "Error: dist/sitemap.xml contains empty <url></url> entries!"
+            exit 1
+          fi
+          echo "Build verification passed: dist/index.html, prerendered route HTML, dist/sitemap.xml, and dist/CNAME are valid for www.kstourssrilanka.com."
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

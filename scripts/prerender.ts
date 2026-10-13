@@ -27,25 +27,10 @@ async function prerender() {
 
   const template = fs.readFileSync(templatePath, 'utf-8');
 
-  // Extract routes from public/sitemap.xml
-  if (!fs.existsSync(sitemapPath)) {
-    console.error('Error: public/sitemap.xml not found.');
-    process.exit(1);
-  }
+  // --- Audit and sanitize sitemap.xml source ---
+  const { validRoutes: routes, entryCount: sitemapCount } = auditAndGenerateSitemap();
 
-  const sitemapXml = fs.readFileSync(sitemapPath, 'utf-8');
-  const locRegex = /<loc>https:\/\/www\.kstourssrilanka\.com([^<]*)<\/loc>/g;
-  const routes: string[] = [];
-  let match;
-  while ((match = locRegex.exec(sitemapXml)) !== null) {
-    const rawPath = match[1] || '/';
-    const normalized = rawPath === '' ? '/' : (rawPath.endsWith('/') ? rawPath : `${rawPath}/`);
-    if (!routes.includes(normalized)) {
-      routes.push(normalized);
-    }
-  }
-
-  console.log(`Found ${routes.length} routes in sitemap.xml to prerender.`);
+  console.log(`Prerendering ${routes.length} valid canonical routes from sitemap (${sitemapCount} total sitemap URLs)...`);
 
   let successCount = 0;
   const invalidRoutes: string[] = [];
@@ -297,6 +282,160 @@ function escapeAttr(str: string): string {
     .replace(/"/g, '&quot;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;');
+}
+
+interface SitemapEntry {
+  loc: string;
+  lastmod?: string;
+  changefreq?: string;
+  priority?: string;
+}
+
+function auditAndGenerateSitemap(): { validRoutes: string[]; entryCount: number } {
+  console.log('--- Auditing and Generating Sitemap ---');
+
+  if (!fs.existsSync(sitemapPath)) {
+    console.error('Error: public/sitemap.xml not found.');
+    process.exit(1);
+  }
+
+  const sitemapXml = fs.readFileSync(sitemapPath, 'utf-8');
+
+  // Regex to match any <url>...</url> block
+  const urlBlockRegex = /<url>([\s\S]*?)<\/url>/g;
+  let match;
+  let totalBlocksFound = 0;
+  let emptyBlocksRemoved = 0;
+  const validEntries: SitemapEntry[] = [];
+  const validRoutes: string[] = [];
+
+  while ((match = urlBlockRegex.exec(sitemapXml)) !== null) {
+    totalBlocksFound++;
+    const blockContent = match[1];
+
+    // Extract <loc> tag
+    const locMatch = blockContent.match(/<loc>([\s\S]*?)<\/loc>/);
+    const locValue = locMatch ? locMatch[1].trim() : '';
+
+    // Check if the block is empty or missing a valid loc
+    if (!locValue) {
+      emptyBlocksRemoved++;
+      console.warn(`[AUDIT] Removed empty <url> entry (block #${totalBlocksFound}).`);
+      continue;
+    }
+
+    // Ensure it belongs to the canonical domain https://www.kstourssrilanka.com/
+    if (!locValue.startsWith('https://www.kstourssrilanka.com/')) {
+      console.warn(`[AUDIT] Warning: non-canonical domain found: ${locValue}`);
+    }
+
+    // Ensure it is not a legacy redirect URL (.html extension)
+    if (locValue.endsWith('.html')) {
+      console.warn(`[AUDIT] Warning: legacy .html URL detected in sitemap, skipping: ${locValue}`);
+      continue;
+    }
+
+    // Extract other metadata
+    const lastmodMatch = blockContent.match(/<lastmod>([\s\S]*?)<\/lastmod>/);
+    const changefreqMatch = blockContent.match(/<changefreq>([\s\S]*?)<\/changefreq>/);
+    const priorityMatch = blockContent.match(/<priority>([\s\S]*?)<\/priority>/);
+
+    const entry: SitemapEntry = {
+      loc: locValue,
+      lastmod: lastmodMatch ? lastmodMatch[1].trim() : undefined,
+      changefreq: changefreqMatch ? changefreqMatch[1].trim() : undefined,
+      priority: priorityMatch ? priorityMatch[1].trim() : undefined,
+    };
+
+    validEntries.push(entry);
+
+    // Extract path for prerendering
+    const rawPath = locValue.replace('https://www.kstourssrilanka.com', '') || '/';
+    const normalized = rawPath === '' ? '/' : (rawPath.endsWith('/') ? rawPath : `${rawPath}/`);
+    if (!validRoutes.includes(normalized)) {
+      validRoutes.push(normalized);
+    }
+  }
+
+  console.log(`[AUDIT] Scanned ${totalBlocksFound} <url> blocks: ${validEntries.length} valid, ${emptyBlocksRemoved} empty entries removed.`);
+
+  // Build clean, well-formed XML
+  let cleanXml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
+  for (const entry of validEntries) {
+    cleanXml += `  <url>\n`;
+    cleanXml += `    <loc>${entry.loc}</loc>\n`;
+    if (entry.lastmod) cleanXml += `    <lastmod>${entry.lastmod}</lastmod>\n`;
+    if (entry.changefreq) cleanXml += `    <changefreq>${entry.changefreq}</changefreq>\n`;
+    if (entry.priority) cleanXml += `    <priority>${entry.priority}</priority>\n`;
+    cleanXml += `  </url>\n`;
+  }
+  cleanXml += `</urlset>\n`;
+
+  // If any empty blocks were removed, rewrite public/sitemap.xml (the source)
+  if (emptyBlocksRemoved > 0) {
+    fs.writeFileSync(sitemapPath, cleanXml, 'utf-8');
+    console.log(`[AUDIT] Cleaned source public/sitemap.xml by removing ${emptyBlocksRemoved} empty <url> entries.`);
+  }
+
+  // Write verified clean sitemap directly to dist/sitemap.xml
+  const distSitemapPath = path.resolve(distDir, 'sitemap.xml');
+  fs.writeFileSync(distSitemapPath, cleanXml, 'utf-8');
+  console.log(`[AUDIT] Generated validated dist/sitemap.xml with ${validEntries.length} entries.`);
+
+  // Strict XML validity verification
+  validateSitemapXml(cleanXml, validEntries.length);
+
+  return { validRoutes, entryCount: validEntries.length };
+}
+
+function validateSitemapXml(xmlContent: string, expectedCount: number) {
+  // 1. Verify XML header and root tags
+  if (!xmlContent.startsWith('<?xml version="1.0" encoding="UTF-8"?>')) {
+    throw new Error('Sitemap XML validation failed: Missing XML declaration.');
+  }
+  if (!xmlContent.includes('<urlset') || !xmlContent.endsWith('</urlset>\n')) {
+    throw new Error('Sitemap XML validation failed: Missing or unclosed <urlset> tag.');
+  }
+
+  // 2. Count tags
+  const openUrls = (xmlContent.match(/<url>/g) || []).length;
+  const closeUrls = (xmlContent.match(/<\/url>/g) || []).length;
+  const openLocs = (xmlContent.match(/<loc>/g) || []).length;
+  const closeLocs = (xmlContent.match(/<\/loc>/g) || []).length;
+
+  if (openUrls !== closeUrls) {
+    throw new Error(`Sitemap XML validation failed: Unmatched <url> tags (${openUrls} open, ${closeUrls} close).`);
+  }
+  if (openLocs !== closeLocs) {
+    throw new Error(`Sitemap XML validation failed: Unmatched <loc> tags (${openLocs} open, ${closeLocs} close).`);
+  }
+  if (openUrls !== openLocs) {
+    throw new Error(`Sitemap XML validation failed: <url> count (${openUrls}) does not match <loc> count (${openLocs}).`);
+  }
+  if (openUrls !== expectedCount) {
+    throw new Error(`Sitemap XML validation failed: Expected ${expectedCount} entries, found ${openUrls}.`);
+  }
+
+  // 3. Ensure no empty entries
+  const emptyUrlRegex = /<url>[\s\r\n]*<\/url>/;
+  if (emptyUrlRegex.test(xmlContent)) {
+    throw new Error('Sitemap XML validation failed: Found empty <url></url> block!');
+  }
+
+  // 4. Ensure every loc is non-empty and starts with canonical domain
+  const locRegex = /<loc>([\s\S]*?)<\/loc>/g;
+  let locMatch;
+  while ((locMatch = locRegex.exec(xmlContent)) !== null) {
+    const loc = locMatch[1].trim();
+    if (!loc) {
+      throw new Error('Sitemap XML validation failed: Found empty <loc> value.');
+    }
+    if (!loc.startsWith('https://www.kstourssrilanka.com/')) {
+      throw new Error(`Sitemap XML validation failed: Invalid domain in <loc>: ${loc}`);
+    }
+  }
+
+  console.log(`[AUDIT] Sitemap XML validation passed: ${expectedCount} valid URLs, 0 empty entries.`);
 }
 
 prerender();
