@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- Homepage -->
   <url>
     <loc>https://www.kstourssrilanka.com/</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
-
-  <!-- Core Commercial Tour Hubs -->
   <url>
     <loc>https://www.kstourssrilanka.com/sri-lanka-tours/</loc>
     <lastmod>2026-10-05</lastmod>
@@ -57,8 +54,6 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-
-  <!-- Multi-Day Itineraries -->
   <url>
     <loc>https://www.kstourssrilanka.com/itineraries/7-day-sri-lanka-tour/</loc>
     <lastmod>2026-10-06</lastmod>
@@ -137,8 +132,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
-
-  <!-- Day Tours Hub & Excursions -->
   <url>
     <loc>https://www.kstourssrilanka.com/day-tours/</loc>
     <lastmod>2026-10-05</lastmod>
@@ -235,8 +228,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-
-  <!-- Destinations Directory & Guides -->
   <url>
     <loc>https://www.kstourssrilanka.com/destinations/</loc>
     <lastmod>2026-10-05</lastmod>
@@ -369,8 +360,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-
-  <!-- Route Guides -->
   <url>
     <loc>https://www.kstourssrilanka.com/routes/kandy-to-ella/</loc>
     <lastmod>2026-10-05</lastmod>
@@ -401,8 +390,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
-  <!-- Travel Guides & Informational Articles -->
   <url>
     <loc>https://www.kstourssrilanka.com/sri-lanka-travel-guide/</loc>
     <lastmod>2026-10-05</lastmod>
@@ -445,8 +432,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
-
-  <!-- Activities and Gallery -->
   <url>
     <loc>https://www.kstourssrilanka.com/activities/</loc>
     <lastmod>2026-10-09</lastmod>
@@ -459,8 +444,6 @@
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
-
-  <!-- Trust, About & Contact -->
   <url>
     <loc>https://www.kstourssrilanka.com/about/</loc>
     <lastmod>2026-10-05</lastmod>

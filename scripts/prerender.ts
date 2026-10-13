@@ -371,9 +371,9 @@ function auditAndGenerateSitemap(): { validRoutes: string[]; entryCount: number 
   }
   cleanXml += `</urlset>\n`;
 
-  // If any empty blocks were removed, rewrite public/sitemap.xml (the source)
+  // Ensure source public/sitemap.xml is permanently clean and in sync with valid entries
+  fs.writeFileSync(sitemapPath, cleanXml, 'utf-8');
   if (emptyBlocksRemoved > 0) {
-    fs.writeFileSync(sitemapPath, cleanXml, 'utf-8');
     console.log(`[AUDIT] Cleaned source public/sitemap.xml by removing ${emptyBlocksRemoved} empty <url> entries.`);
   }
 
