@@ -66,7 +66,7 @@ export const DESTINATIONS: Destination[] = [
     region: "Central Province / Hill Country",
     heroImage: "/images/Sacred Temple of the Tooth & Royal Heritage.jpg",
     galleryImages: [
-      { src: "/images/kandy1.jpg", alt: "Temple of the Sacred Tooth Relic in Kandy" },
+      { src: "/images/kandy1.webp", alt: "Temple of the Sacred Tooth Relic in Kandy" },
       { src: "/images/kandy2.jpeg", alt: "Royal Botanical Gardens Peradeniya in Kandy" },
       { src: "/images/kandy3.jpg", alt: "Kandy Lake and cultural hill country landscape" }
     ],

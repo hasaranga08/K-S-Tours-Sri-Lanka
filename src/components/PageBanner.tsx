@@ -23,7 +23,7 @@ export const PageBanner: React.FC<PageBannerProps> = ({
   actions,
   className = '',
   minHeightClass = 'min-h-[220px] sm:min-h-[280px] lg:min-h-[320px]',
-  image = '/images/banner.jpg'
+  image = '/images/banner.webp'
 }) => {
   return (
     <section 

@@ -86,7 +86,7 @@ export const ToursListView: React.FC<ToursListViewProps> = ({ onNavigate, defaul
         };
       default:
         return {
-          title: "Sri Lanka Tour Packages & Private Itineraries | KS Tours",
+          title: "Sri Lanka Tour Packages & Private Tours | KS Tours",
           desc: "Handcrafted Sri Lanka tour packages, private guided holidays and tailor-made itineraries. Authentic cultural highlights, wildlife safaris & beach escapes.",
           canonical: "/sri-lanka-tours/",
           h1: "Sri Lanka Tour Packages & Private Itineraries",

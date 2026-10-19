@@ -96,7 +96,7 @@ export const DAY_TOURS: DayTourPackage[] = [
     duration: "Full Day (approx. 9–11 hours)",
     startPoint: "Colombo, Negombo, or BIA Airport",
     endPoint: "Return to your hotel",
-    heroImage: "/images/kandy sri lanka.jpg",
+    heroImage: "/images/kandy sri lanka.webp",
     tagline: "Immerse yourself in the sacred spiritual heritage, colonial tea hills, and botanical wonders of the hill capital.",
     overview: "Ascend from the coastal lowlands into the mist-draped hills surrounding Kandy Lake. This private day tour visits the UNESCO-listed Sri Dalada Maligawa (Temple of the Sacred Tooth Relic), the world-renowned Peradeniya Botanical Gardens with its giant Java fig trees, and an authentic Ceylon tea processing factory.",
     primaryKeyword: "Kandy day tour",

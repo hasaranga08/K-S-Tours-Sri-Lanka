@@ -11,8 +11,8 @@ export interface DriverVehicle {
 
 export const PRIVATE_DRIVER_SERVICE = {
   title: "Sri Lanka Private Driver & Chauffeur Guide Service",
-  metaTitle: "Sri Lanka Private Driver & Chauffeur Tours | KS Tours",
-  metaDescription: "Hire a trusted, English-speaking Sri Lanka private driver. Modern air-conditioned cars and vans, clean vehicles, fuel & tolls included. Nearly 40 years experience.",
+  metaTitle: "Sri Lanka Private Driver & Chauffeur Guide | KS Tours",
+  metaDescription: "Hire a trusted, English-speaking Sri Lanka private driver. Modern air-conditioned vehicles, fuel and tolls included, backed by 40 years of experience.",
   tagline: "Safe, flexible, and stress-free island travel with seasoned local chauffeurs.",
   heroImage: "/images/sri-lanka-private-driver-tour.jpg",
   primaryKeyword: "Sri Lanka private driver",

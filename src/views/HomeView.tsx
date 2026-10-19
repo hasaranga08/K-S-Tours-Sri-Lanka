@@ -31,8 +31,8 @@ interface HomeViewProps {
 
 export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
   useSEO({
-    title: 'Sri Lanka Tours & Holiday Packages | KS Tours Sri Lanka',
-    description: 'Discover Sri Lanka with Kumar & Sons Tours. 40 years of local expertise crafting private tours, tailor-made holiday packages, wildlife safaris & chauffeur travel.',
+    title: 'Sri Lanka Tours & Holiday Packages | KS Tours',
+    description: 'Discover Sri Lanka with Kumar & Sons Tours. 40 years of local expertise crafting bespoke private tours, wildlife safaris, and chauffeur travel.',
     canonicalPath: '/',
     ogType: 'website',
     ogImage: '/images/Slide1.jpg'

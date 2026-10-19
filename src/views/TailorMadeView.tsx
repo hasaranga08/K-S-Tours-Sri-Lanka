@@ -30,8 +30,8 @@ interface TailorMadeViewProps {
 
 export const TailorMadeView: React.FC<TailorMadeViewProps> = ({ onNavigate }) => {
   useSEO({
-    title: "100% Tailor-Made & Custom Sri Lanka Private Tours | KS Tours",
-    description: "Design your personalized private Sri Lanka holiday. Custom itineraries crafted around your dates, interests, pace, and accommodation with Kumar & Sons Tours.",
+    title: "Tailor-Made Sri Lanka Tours & Holidays | KS Tours",
+    description: "Plan your custom private Sri Lanka holiday. Bespoke itineraries designed around your dates, pace, and interests with local Kumar & Sons guides.",
     canonicalPath: "/tailor-made-sri-lanka-tours/",
     schema: {
       "@context": "https://schema.org",
