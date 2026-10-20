@@ -4,6 +4,9 @@ import { useSEO } from '../hooks/useSEO';
 import { Breadcrumbs } from '../components/Breadcrumbs';
 import { FAQAccordion } from '../components/FAQAccordion';
 import { EnquiryForm } from '../components/EnquiryForm';
+import { DESTINATIONS } from '../data/destinations';
+import { TOURS } from '../data/tours';
+import { DAY_TOURS } from '../data/dayTours';
 import { COMPANY_INFO, getWhatsAppUrl } from '../data/company';
 import { 
   Navigation, 
@@ -196,6 +199,81 @@ export const RouteDetailView: React.FC<RouteDetailViewProps> = ({ route, onNavig
             </div>
           ))}
         </div>
+      </section>
+
+      {/* Connected Destinations & Tours Along This Route */}
+      <section className="space-y-6 pt-6 border-t border-neutral-200">
+        <div>
+          <span className="text-xs font-semibold uppercase tracking-wider text-amber-700 block mb-1">
+            Connected Highlights
+          </span>
+          <h2 className="font-serif text-xl sm:text-2xl font-bold text-neutral-900">
+            Destinations &amp; Tours on This Route
+          </h2>
+          <p className="text-xs sm:text-sm text-neutral-600 mt-1">
+            Explore key travel destinations and private tour packages that feature the {route.fromCity} to {route.toCity} journey.
+          </p>
+        </div>
+
+        {/* Connected Destinations */}
+        {route.relatedDestinations && route.relatedDestinations.length > 0 && (
+          <div className="space-y-2">
+            <h3 className="text-xs font-bold uppercase tracking-wider text-neutral-500">
+              Key Stops &amp; Nearby Destinations:
+            </h3>
+            <div className="flex flex-wrap gap-2">
+              {route.relatedDestinations.map((slug) => {
+                const dest = DESTINATIONS.find((d) => d.slug === slug);
+                return (
+                  <a
+                    key={slug}
+                    href={`/destinations/${slug}/`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      onNavigate(`/destinations/${slug}/`);
+                    }}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white border border-neutral-200 hover:border-amber-400 hover:bg-amber-50 rounded-lg text-xs font-medium text-neutral-800 transition-colors shadow-2xs"
+                  >
+                    <MapPin className="w-3.5 h-3.5 text-amber-700" />
+                    <span>{dest ? dest.name : slug}</span>
+                  </a>
+                );
+              })}
+            </div>
+          </div>
+        )}
+
+        {/* Connected Tours */}
+        {route.relatedTours && route.relatedTours.length > 0 && (
+          <div className="space-y-2 pt-2">
+            <h3 className="text-xs font-bold uppercase tracking-wider text-neutral-500">
+              Tours Including This Route:
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              {route.relatedTours.map((tSlug) => {
+                const tour = TOURS.find((t) => t.slug === tSlug);
+                const dayTour = DAY_TOURS.find((dt) => dt.slug === tSlug);
+                const item = tour || dayTour;
+                if (!item) return null;
+                const path = tour ? `/itineraries/${item.slug}/` : `/day-tours/${item.slug}/`;
+                return (
+                  <a
+                    key={tSlug}
+                    href={path}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      onNavigate(path);
+                    }}
+                    className="p-3 bg-white border border-neutral-200 hover:border-neutral-300 rounded-xl flex items-center justify-between text-xs font-semibold text-neutral-800 hover:text-amber-800 shadow-2xs transition-colors group"
+                  >
+                    <span className="line-clamp-1">{item.title}</span>
+                    <ArrowRight className="w-3.5 h-3.5 text-amber-700 group-hover:translate-x-0.5 transition-transform shrink-0 ml-2" />
+                  </a>
+                );
+              })}
+            </div>
+          </div>
+        )}
       </section>
 
       {/* FAQs */}

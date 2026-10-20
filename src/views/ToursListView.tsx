@@ -42,7 +42,7 @@ export const ToursListView: React.FC<ToursListViewProps> = ({ onNavigate, defaul
       case 'day-tours':
         return {
           title: "Sri Lanka Day Tours & Private Excursions | KS Tours",
-          desc: "Private single-day tours across Sri Lanka with chauffeur guide. Day trips to Sigiriya, Kandy, Galle Fort, and Nuwara Eliya with hotel pickup from Colombo & Negombo.",
+          desc: "Private single-day tours across Sri Lanka with chauffeur guide: Sigiriya, Kandy, Galle Fort, and Nuwara Eliya with hotel pickup from Colombo and Negombo.",
           canonical: "/day-tours/",
           h1: "Sri Lanka Day Tours & Private Excursions",
           sub: "Private single-day excursions with hotel pickup from Colombo, Negombo, or Kandy.",
@@ -51,7 +51,7 @@ export const ToursListView: React.FC<ToursListViewProps> = ({ onNavigate, defaul
       case 'honeymoon':
         return {
           title: "Sri Lanka Honeymoon Packages & Romantic Tours | KS Tours",
-          desc: "Romantic Sri Lanka honeymoon packages tailored for couples. Private luxury chauffeurs, secluded boutique villas, scenic train rides, and candlelight beach dinners.",
+          desc: "Romantic Sri Lanka honeymoon packages tailored for couples. Private chauffeurs, boutique villas, scenic hill trains, and candlelight beach dinners.",
           canonical: "/sri-lanka-honeymoon/",
           h1: "Sri Lanka Honeymoon Packages & Romantic Tours",
           sub: "Romantic private journeys designed for two, blending misty Ceylon highlands, private safaris, and secluded tropical beaches.",
@@ -60,7 +60,7 @@ export const ToursListView: React.FC<ToursListViewProps> = ({ onNavigate, defaul
       case 'family':
         return {
           title: "Sri Lanka Family Tours & Holidays With Kids | KS Tours",
-          desc: "Child-friendly Sri Lanka family holiday packages with private driver. Safe, flexible itineraries featuring elephant gatherings, turtle hatcheries, and relaxed beaches.",
+          desc: "Child-friendly Sri Lanka family holiday packages with private driver. Safe, flexible itineraries with elephant gatherings, tea hills, and relaxed beaches.",
           canonical: "/sri-lanka-family-tours/",
           h1: "Sri Lanka Family Tours & Holidays With Kids",
           sub: "Tailored private family holidays with spacious air-conditioned vans, patient local drivers, and unforgettable wildlife encounters.",
@@ -68,8 +68,8 @@ export const ToursListView: React.FC<ToursListViewProps> = ({ onNavigate, defaul
         };
       case 'safari':
         return {
-          title: "Sri Lanka Wildlife Safari Tours & National Parks | KS Tours",
-          desc: "Private Sri Lanka wildlife safari tour packages. Track leopards in Yala, witness elephant gatherings in Minneriya, and explore Wilpattu with expert local guides.",
+          title: "Sri Lanka Safari Tours & Wildlife Holidays | KS Tours",
+          desc: "Private Sri Lanka wildlife safari tour packages. Track leopards in Yala, witness elephant gatherings in Minneriya, and explore Wilpattu with local guides.",
           canonical: "/sri-lanka-safari-tours/",
           h1: "Sri Lanka Wildlife Safari Tours & National Parks",
           sub: "Track Sri Lankan leopards, wild elephant gatherings, and sloth bears across premier national parks with expert private guides.",

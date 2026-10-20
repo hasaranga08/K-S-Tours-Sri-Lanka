@@ -27,8 +27,8 @@ interface ActivitiesViewProps {
 
 export const ActivitiesView: React.FC<ActivitiesViewProps> = ({ onNavigate }) => {
   useSEO({
-    title: 'Things to Do in Sri Lanka | Activities & Experiences | KS Tours',
-    description: 'Discover the best things to do in Sri Lanka: wildlife safaris, ancient Sigiriya climbs, scenic blue train rides, tea plantation tastings, whale watching, and authentic cooking experiences with Kumar & Sons Tours.',
+    title: 'Things to Do in Sri Lanka: Top Activities | KS Tours',
+    description: 'Discover top things to do in Sri Lanka: wildlife safaris, Sigiriya climbs, scenic blue trains, Ceylon tea tastings, and authentic local experiences.',
     canonicalPath: '/activities/',
     ogType: 'website',
     schema: {

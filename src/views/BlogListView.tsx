@@ -11,8 +11,8 @@ interface BlogListViewProps {
 
 export const BlogListView: React.FC<BlogListViewProps> = ({ onNavigate }) => {
   useSEO({
-    title: "Sri Lanka Travel Guide & Tips | Weather, Trains & Safaris | KS Tours",
-    description: "In-depth Sri Lanka travel guides from local tour drivers: best time to visit, scenic Kandy to Ella train booking, Yala vs Udawalawe safari comparisons, and itinerary advice.",
+    title: "Sri Lanka Travel Guides & Local Advice | KS Tours",
+    description: "In-depth Sri Lanka travel guides from local drivers: best time to visit, scenic blue train booking, safari park comparisons, and itinerary tips.",
     canonicalPath: "/sri-lanka-travel-guide/",
     schema: {
       "@context": "https://schema.org",

@@ -4,7 +4,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: "best-time-to-visit-sri-lanka",
     title: "Best Time to Visit Sri Lanka: Weather, Seasons & Month-by-Month Guide",
-    metaTitle: "Best Time to Visit Sri Lanka | Weather & Seasons Guide | KS Tours",
+    metaTitle: "Best Time to Visit Sri Lanka: Weather Guide | KS Tours",
     metaDescription: "Understand Sri Lanka's unique dual monsoon weather system. Learn the best months to visit beaches, tea country, Cultural Triangle, and wildlife safaris.",
     category: "Travel Tips",
     author: "Kumar & Chathuranga",
@@ -45,8 +45,8 @@ Sri Lanka's tropical climate is influenced by two primary monsoons:
   {
     slug: "kandy-to-ella-scenic-train-guide",
     title: "Kandy to Ella Scenic Train: Complete Guide, Tickets & Best Views",
-    metaTitle: "Kandy to Ella Train Guide | Tickets, Classes & Tips | KS Tours",
-    metaDescription: "Everything you need to know about the world-famous blue train journey from Kandy to Ella: reserved classes, ticket booking tips, scenic sides, and Nine Arch Bridge.",
+    metaTitle: "Kandy to Ella Scenic Train Travel Guide | KS Tours",
+    metaDescription: "Guide to the famous blue train from Kandy to Ella: reserved classes, ticket booking tips, scenic seating sides, and Nine Arch Bridge stops.",
     category: "Transport & Routes",
     author: "Chathuranga (Chathu)",
     publishDate: "2026-03-10",
@@ -84,7 +84,7 @@ Booking Sri Lankan train tickets online can be notoriously tricky for overseas t
   {
     slug: "yala-or-udawalawe-safari-guide",
     title: "Yala or Udawalawe: Which Sri Lankan Safari Park Should You Choose?",
-    metaTitle: "Yala or Udawalawe Safari: Which Is Better? | Expert Guide | KS Tours",
+    metaTitle: "Yala vs Udawalawe Safari: Which Is Better? | KS Tours",
     metaDescription: "Comparing Yala vs Udawalawe National Parks: wildlife density, elephant sightings, leopard chances, landscapes, and travel times from a local driver guide.",
     category: "Wildlife & Safari",
     author: "Kumar (Founder)",
@@ -126,7 +126,7 @@ On a 10-day or 14-day itinerary, visiting both parks is completely realistic and
   {
     slug: "how-to-choose-a-private-driver-in-sri-lanka",
     title: "How to Choose a Private Driver in Sri Lanka: Practical Advice & Cost Inclusions",
-    metaTitle: "How to Choose a Private Driver in Sri Lanka | Cost & Tips | KS Tours",
+    metaTitle: "How to Hire a Private Driver in Sri Lanka | KS Tours",
     metaDescription: "Practical guide to hiring a private driver in Sri Lanka: transparent inclusions, vehicle selection, driver accommodation rules, and avoiding commission stops.",
     category: "Transport & Routes",
     author: "Chathuranga (Chathu)",
@@ -169,8 +169,8 @@ We advise booking directly with established local family-run operators rather th
   {
     slug: "7-10-or-14-days-in-sri-lanka-choosing-your-itinerary",
     title: "7, 10 or 14 Days in Sri Lanka: Choosing the Right Itinerary Length",
-    metaTitle: "7, 10 or 14 Days in Sri Lanka: Choosing Your Itinerary | KS Tours",
-    metaDescription: "Comparing 1-week, 10-day, and 2-week Sri Lanka itineraries: realistic travel times, highlights, pacing advice, and how to avoid spending your holiday in traffic.",
+    metaTitle: "7, 10 or 14 Days in Sri Lanka: Itinerary Guide | KS Tours",
+    metaDescription: "Compare 1-week, 10-day, and 2-week Sri Lanka itineraries: realistic travel times, highlights, pacing advice, and route planning tips.",
     category: "Travel Tips",
     author: "Kumar (Founder)",
     publishDate: "2026-06-01",
@@ -218,7 +218,7 @@ If you have 10 days or more, we strongly recommend our signature 10-Day Highligh
   {
     slug: "self-driving-vs-hiring-a-private-driver-in-sri-lanka",
     title: "Self-Driving vs Hiring a Private Driver in Sri Lanka: Honest Advice",
-    metaTitle: "Self-Driving vs Hiring a Private Driver in Sri Lanka | KS Tours",
+    metaTitle: "Self-Driving vs Private Driver in Sri Lanka | KS Tours",
     metaDescription: "An objective comparison of renting a self-drive car versus hiring a local private driver in Sri Lanka: road conditions, licensing laws, insurance, and costs.",
     category: "Transport & Routes",
     author: "Kumar & Chathuranga",

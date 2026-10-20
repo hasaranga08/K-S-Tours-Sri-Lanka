@@ -23,7 +23,7 @@ interface ContactViewProps {
 export const ContactView: React.FC<ContactViewProps> = ({ onNavigate }) => {
   useSEO({
     title: "Contact KS Tours Sri Lanka | Tour Inquiries & Bookings",
-    description: "Contact Kumar & Sons Tours Sri Lanka. Chat directly on WhatsApp (+94 77 774 1615), request a custom itinerary quote, or visit our office in Kochchikade/Negombo (15 mins from CMB airport).",
+    description: "Contact Kumar & Sons Tours. Chat directly on WhatsApp (+94 77 774 1615) or request a custom itinerary quote. Kochchikade base 15 mins from CMB airport.",
     canonicalPath: "/contact/",
     schema: {
       "@context": "https://schema.org",

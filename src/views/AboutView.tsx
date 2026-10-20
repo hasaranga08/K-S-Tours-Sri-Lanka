@@ -28,8 +28,8 @@ interface AboutViewProps {
 
 export const AboutView: React.FC<AboutViewProps> = ({ onNavigate }) => {
   useSEO({
-    title: "About Kumar & Sons Tours Sri Lanka | 40 Years of Experience",
-    description: "Discover Sri Lanka with Kumar & Sons Tours. Built on 40 years of island tourism experience, deep local knowledge, family heritage, and personalised private travel.",
+    title: "About Kumar & Sons Tours | 40 Years of Experience",
+    description: "Learn about Kumar & Sons Tours. Built on 40 years of local guiding experience, family heritage, and bespoke private tours across Sri Lanka.",
     canonicalPath: "/about/",
     ogImage: "/images/G4.jpg",
     schema: {

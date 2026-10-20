@@ -13,7 +13,7 @@ interface DestinationsListViewProps {
 
 export const DestinationsListView: React.FC<DestinationsListViewProps> = ({ onNavigate }) => {
   useSEO({
-    title: "Sri Lanka Destinations Guide | Sigiriya, Kandy, Ella, Yala & Galle | KS Tours",
+    title: "Best Sri Lanka Travel Destinations & Guides | KS Tours",
     description: "Explore Sri Lanka's top travel destinations. Complete travel guides for Sigiriya, Kandy, Ella, Yala National Park, Nuwara Eliya, and Galle Fort with local tour insights.",
     canonicalPath: "/destinations/",
     schema: {

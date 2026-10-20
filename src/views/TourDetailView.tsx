@@ -7,6 +7,7 @@ import { FAQAccordion } from '../components/FAQAccordion';
 import { CustomerGallery } from '../components/CustomerGallery';
 import { TourCard } from '../components/TourCard';
 import { TOURS } from '../data/tours';
+import { DESTINATIONS } from '../data/destinations';
 import { COMPANY_INFO, getWhatsAppUrl } from '../data/company';
 import { 
   Check, 
@@ -198,15 +199,34 @@ export const TourDetailView: React.FC<TourDetailViewProps> = ({ tour, onNavigate
           </div>
           <div className="flex flex-wrap items-center gap-2">
             {tour.destinations.map((destName, i) => {
-              const matchedDestSlug = destName.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+              const matchedDest = DESTINATIONS.find(
+                (d) =>
+                  d.name.toLowerCase() === destName.toLowerCase() ||
+                  destName.toLowerCase().startsWith(d.name.toLowerCase()) ||
+                  d.slug === destName.toLowerCase().replace(/\s+/g, '-')
+              );
+              if (matchedDest) {
+                return (
+                  <a
+                    key={i}
+                    href={`/destinations/${matchedDest.slug}/`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      onNavigate(`/destinations/${matchedDest.slug}/`);
+                    }}
+                    className="px-2.5 py-1 bg-neutral-100 hover:bg-amber-100 hover:text-amber-950 text-neutral-700 rounded-md transition-colors cursor-pointer text-xs inline-block"
+                  >
+                    {destName}
+                  </a>
+                );
+              }
               return (
-                <button
+                <span
                   key={i}
-                  onClick={() => onNavigate(`/destinations/${matchedDestSlug}/`)}
-                  className="px-2.5 py-1 bg-neutral-100 hover:bg-amber-100 hover:text-amber-950 text-neutral-700 rounded-md transition-colors cursor-pointer text-xs"
+                  className="px-2.5 py-1 bg-neutral-100 text-neutral-700 rounded-md text-xs inline-block"
                 >
                   {destName}
-                </button>
+                </span>
               );
             })}
           </div>

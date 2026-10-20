@@ -14,7 +14,7 @@ interface ItinerariesComparisonViewProps {
 
 export const ItinerariesComparisonView: React.FC<ItinerariesComparisonViewProps> = ({ onNavigate }) => {
   useSEO({
-    title: "Sri Lanka Itineraries | 7, 10 & 14 Day Tour Comparisons | KS Tours",
+    title: "Sri Lanka Itineraries: 7, 10 & 14 Day Tours | KS Tours",
     description: "Compare classic Sri Lanka itineraries: 7-day cultural circuit, 10-day highlights & safari, and 14-day grand island exploration with Kumar & Sons Tours.",
     canonicalPath: "/itineraries/",
     schema: {

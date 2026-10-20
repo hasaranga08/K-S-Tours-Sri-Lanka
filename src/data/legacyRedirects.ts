@@ -548,6 +548,18 @@ export const LEGACY_REDIRECTS: LegacyRedirect[] = [
     category: "category"
   },
   {
+    legacyPath: "/destination-detail.html",
+    targetPath: "/destinations/",
+    title: "Sri Lanka Travel Destinations Directory",
+    category: "category"
+  },
+  {
+    legacyPath: "/destination_detail.html",
+    targetPath: "/destinations/",
+    title: "Sri Lanka Travel Destinations Directory",
+    category: "category"
+  },
+  {
     legacyPath: "/itineraries.html",
     targetPath: "/itineraries/",
     title: "Sri Lanka Tour Itineraries Directory",

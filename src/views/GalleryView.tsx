@@ -21,7 +21,7 @@ export const GalleryView: React.FC<GalleryViewProps> = ({ onNavigate }) => {
   // Enhanced SEO configuration
   useSEO({
     title: 'Sri Lanka Travel Gallery & Tour Photos | KS Tours',
-    description: 'Explore authentic photographs from Sri Lanka tours, real travelers, scenic destinations, comfortable private vehicles, and wildlife safaris with Kumar & Sons Tours.',
+    description: 'Explore authentic photos from Sri Lanka tours: real travelers, scenic landmarks, clean air-conditioned vehicles, and wild elephant safaris.',
     canonicalPath: '/gallery/',
     ogType: 'website',
     schema: {

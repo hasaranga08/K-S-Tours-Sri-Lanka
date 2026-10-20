@@ -13,8 +13,8 @@ interface DayToursListViewProps {
 
 export const DayToursListView: React.FC<DayToursListViewProps> = ({ onNavigate }) => {
   useSEO({
-    title: "Sri Lanka Day Tours | Private Day Trips & Excursions | KS Tours",
-    description: "Book private Sri Lanka day tours: Sigiriya Rock & Dambulla, Kandy Cultural Tour, Galle Dutch Fort, Nuwara Eliya Tea Country, and Yala safari day trips with private chauffeur.",
+    title: "Sri Lanka Day Tours & Private Excursions | KS Tours",
+    description: "Book private Sri Lanka day tours with chauffeur guide: Sigiriya, Kandy, Galle Fort, Nuwara Eliya, and Yala safari day trips from Colombo and Negombo.",
     canonicalPath: "/day-tours/",
     schema: {
       "@context": "https://schema.org",
